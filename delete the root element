@@ -1,0 +1,28 @@
+ void Delete() {
+    // delete the root element
+    arr[1] = arr[arr.size() - 1];
+    arr.pop_back();
+
+    // heapify the root element(element ko sahi place pr kro)
+    int index = 1;
+    while (index < arr.size()) {
+      int leftIndex = 2 * index;
+      int rightIndex = 2 * index + 1;
+      int lagestvalue = index;
+
+      if (leftIndex < arr.size() && arr[leftIndex] > arr[lagestvalue]) {
+        lagestvalue = leftIndex;
+      }
+
+      if (rightIndex < arr.size() && arr[rightIndex] > arr[lagestvalue]) {
+        lagestvalue = rightIndex;
+      }
+
+      if (lagestvalue == index) {
+        break;
+      } else {
+        swap(arr[index], arr[lagestvalue]);
+        index = lagestvalue;
+      }
+    }
+  }
